@@ -32,3 +32,5 @@
         }
     ]
 }
+
+* Diagrama de Solución: https://github.com/flinco1/Ejercicio_JAVA-Especialista_Integracion-flinco/blob/main/Diagrama_de_soluci%C3%B3n.jpeg
