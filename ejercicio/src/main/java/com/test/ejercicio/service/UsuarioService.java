@@ -21,9 +21,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class UsuarioService implements IUsuarioService {
 
+	/** The usuario dao. */
 	@Autowired
     private UsuarioDao usuarioDao;
 	
+	/** The phone dao. */
 	@Autowired
     private PhoneDao phoneDao;
 	
@@ -33,6 +35,12 @@ public class UsuarioService implements IUsuarioService {
 		return findByEmail.isEmpty();
 	}
 	
+    /**
+     * Crear usuario.
+     *
+     * @param userRequest the user request
+     * @return the user response
+     */
     @Override
 	@Transactional
     public UserResponse crearUsuario(UserRequest userRequest) {
@@ -59,6 +67,12 @@ public class UsuarioService implements IUsuarioService {
         return UserToUserResponse(nuevoUsuario);
     }
     
+	/**
+	 * User request to usuario.
+	 *
+	 * @param userRequest the user request
+	 * @return the usuario
+	 */
 	private Usuario UserRequestToUsuario(UserRequest userRequest){
 		//obtiene la fecha y hora actual
         LocalDateTime datetime = LocalDateTime.now();
@@ -77,6 +91,12 @@ public class UsuarioService implements IUsuarioService {
 		
 	}
 	
+	/**
+	 * User to user response.
+	 *
+	 * @param usuario the usuario
+	 * @return the user response
+	 */
 	private UserResponse UserToUserResponse(Usuario usuario){
 		UserResponse retorno = new UserResponse();
 		retorno.setId(usuario.getId());

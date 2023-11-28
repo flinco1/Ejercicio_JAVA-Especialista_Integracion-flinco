@@ -14,37 +14,55 @@ import com.test.ejercicio.dto.UserResponse;
 import com.test.ejercicio.service.IUsuarioService;
 import com.test.ejercicio.utilidades.Utilidades;
 
+/**
+ * The Class CreacionUsuarios.
+ */
 @RestController
 @RequestMapping(path = "/servicesREST")
 public class CreacionUsuarios {
 	
+	/** The regex. */
 	@Value(value = "${validaciones.regex.contrsena}")
 	private String regex;
 	
+	/** The usuario service. */
 	@Autowired
 	private IUsuarioService usuarioService;
 	
+	/**
+	 * Creacion usuarios.
+	 *
+	 * @param userRequest the user request
+	 * @return the response entity
+	 * @throws Exception the exception
+	 */
 	@PostMapping( path = "/creacionUsuarios")
 	public ResponseEntity<?> creacionUsuarios(@RequestBody UserRequest userRequest) throws Exception {
 
-		System.out.println("User: " + userRequest.getName());
-		System.out.println("email: " + userRequest.getEmail());
-		
 		UserResponse userResponse;
 		
 		try {
+			// Validación del email
 			if(!Utilidades.validarEmail(userRequest.getEmail())) {
 				ErrorRequest error = new ErrorRequest();
 				error.setMensaje("El correo no tiene el formato correcto.");
 				return ResponseEntity.ok(error);
-			} if(!Utilidades.validarContrasena(userRequest.getPassword(), regex)) {
+			
+			}
+			//Validación del formato de la contraseña
+			else if(!Utilidades.validarContrasena(userRequest.getPassword(), regex)) {
+				
 				ErrorRequest error = new ErrorRequest();
 				error.setMensaje("El contraseña no cumple con el formato solicitado.");
 				return ResponseEntity.ok(error);
-			}else if(usuarioService.validarUsuario(userRequest)) {
+			}
+			//Creación del usuarios
+			else if(usuarioService.validarUsuario(userRequest)) {
 				userResponse = usuarioService.crearUsuario(userRequest);
 				return ResponseEntity.ok(userResponse);
-			} else {
+			} 
+			//En el caso que el usuario exista, se enviar el mensaje informado.
+			else {
 				ErrorRequest error = new ErrorRequest();
 				error.setMensaje("El correo ya registrado");
 				return ResponseEntity.ok(error);
@@ -55,8 +73,5 @@ public class CreacionUsuarios {
 			return ResponseEntity.ok(error);
 		}
 	}
-	
-
-
 	
 }
