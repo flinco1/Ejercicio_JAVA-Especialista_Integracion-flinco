@@ -1,7 +1,7 @@
 # Ejercicio_JAVA-Especialista_Integracion-flinco
 
-#Instalación
-###Requisitos
+# Instalación
+### Requisitos
 * Java 11
 * Maven 3.9.4 o superior
 * Git
@@ -13,6 +13,7 @@
 * Crear en la carpeta de usuario (C:\Users\xxx\) el archivo ejercicioApp.mv.db
 * En eclipse Abrir la clase EjercicioApplication.java, y ejecutar como aplicación.
 * Endpoint: localhost:8080/servicesREST/creacionUsuarios
+* Swagger : http://localhost:8080/v2/api-docs
 * Json ejemplo de entrada:
 {
     "name": "Juan Rodriguez",
