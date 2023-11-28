@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,6 @@ import com.test.ejercicio.dto.PhoneRequest;
 import com.test.ejercicio.dto.PhoneResponse;
 import com.test.ejercicio.dto.UserRequest;
 import com.test.ejercicio.dto.UserResponse;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class UsuarioService implements IUsuarioService {
